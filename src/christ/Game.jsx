@@ -41,7 +41,7 @@ class Game extends React.Component {
     squares[i] = this.state.xIsNext ? "X" : "O";
     chosenValue[this.state.stepNumber] = i + 1;
 
-    this.setState({                                                                   // set current history and history ov values
+    this.setState({                             // set current history and history ov values
       history: history.concat([
         {
           squares: squares,
