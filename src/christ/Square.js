@@ -1,9 +1,8 @@
 function Square(props) {
-  return (<li className="item-square">
+  return (
     <button className={props.className ? 'chosen square' : 'square'} onClick={props.onClick}>
       {props.value}
     </button>
-  </li>
   );
 }
 

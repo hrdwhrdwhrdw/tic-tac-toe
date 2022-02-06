@@ -20,6 +20,11 @@ class Game extends React.Component {
           chosenValue: Array(9).fill(null)
         }
       ],
+      field: [
+        [0, 0], [1, 0], [2, 0],
+        [0, 1], [1, 1], [2, 1],
+        [0, 2], [1, 2], [2, 2]
+      ],
       stepNumber: 0,
       xIsNext: true,
     };
@@ -128,6 +133,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             activeValue={this.state.activeValue}
+            field={this.state.field}
             onClick={(i) => this.handleClick(i)}
           />
         </div>
