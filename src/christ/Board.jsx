@@ -11,34 +11,21 @@ class Board extends React.Component {
       rows[i] = field.slice(i * size, i * size + size);        // rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
     }
     
-    // return rows.map((key) => {
-    //   return <div className='board-row'>
-    //     {key.map(i => this.renderSquare(i))}
-    //   </div>
-    // });
-
-
     return rows.map((key) => {
-      console.log(key)
-      return <div className='board-row'>
-        {key.map(i => {return <Square
-        activeValue={this.props.activeValue}
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-        className={this.props.activeValue ===  i +1 ? "chosen" : ""}
-      />})}
+      return <div className='board-row' id={key[0] + 10}>
+        {key.map(i => {return this.renderSquare(i)})}
       </div>
     });
-    
   }
 
   renderSquare(i) {
     return (
       <Square
+        key={i}
         activeValue={this.props.activeValue}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        className={this.props.activeValue ===  i +1 ? "chosen" : ""}
+        className={this.props.activeValue ===  i + 1 ? "chosen" : ""}
       />
     );
   }
