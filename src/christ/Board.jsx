@@ -12,7 +12,7 @@ class Board extends React.Component {
     }
     
     return rows.map((key) => {
-      return <div className='board-row' id={key[0] + 10}>
+      return <div className='board-row' key={key[0]}>
         {key.map(i => {return this.renderSquare(i)})}
       </div>
     });
