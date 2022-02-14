@@ -1,6 +1,7 @@
 import React from "react";
 import Board from "./Board";
 import MoveList from "./MoveList";
+import Status from "./Status";
 
 class Game extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
+      isSorted: false
     };
   }
 
@@ -101,42 +103,21 @@ class Game extends React.Component {
 
     const historyValues = this.state.historyValues;
     const currentValue = historyValues[this.state.stepNumber];
-
     const winner = this.calculateWinner(current.squares);
-
-    const moves = history.map((step, move) => {                             // create array of movelist
-      const desc = move ? "Go to move #" + move : "Go to game start";
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>       
-        </li>
-      );
-    });
-
-    let status;
-    if (winner) {                                                           // set status
-      status = "Winner: " + winner;
-    } else if ((this.state.history.length > 8 && !winner)) {                       
-      status = "Game has no winner"
-    } else if (history.length - 1 < 9) {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    }
 
     return (
       <div className="game">
-        <div className="game-board">
-          <Board
+        <Board
             squares={current.squares}
             activeValue={this.state.activeValue}
             onClick={(i) => this.handleClick(i)}
           />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-          <div className="movelist"> 
-          </div>
-        </div>
+        <Status
+          winner={winner}
+          isNext={this.state.xIsNext}
+          history={this.state.history}
+          jumpTo={(val) => this.jumpTo(val)}
+        />
         <MoveList
           chosenValue={currentValue.chosenValue}
           onClick={(val) => this.addClass(val)} />

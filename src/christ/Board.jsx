@@ -25,14 +25,14 @@ class Board extends React.Component {
         activeValue={this.props.activeValue}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        className={this.props.activeValue ===  i + 1 ? "chosen" : ""}
+        className={this.props.activeValue ===  i + 1 ? 'chosen' : ''}
       />
     );
   }
 
   render() {
     return (
-      <div>
+      <div className="game-board">
         {this.createSquares()}
       </div>
     );
