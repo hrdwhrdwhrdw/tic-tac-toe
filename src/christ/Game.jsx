@@ -97,6 +97,12 @@ class Game extends React.Component {
     })
   }
 
+  toSort() {
+    this.setState({
+      isSorted: !this.state.isSorted
+    })
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -117,8 +123,12 @@ class Game extends React.Component {
           isNext={this.state.xIsNext}
           history={this.state.history}
           jumpTo={(val) => this.jumpTo(val)}
+          isSorted={this.state.isSorted}
         />
         <MoveList
+          toSort={() => this.toSort()}
+          isSorted={this.state.isSorted}
+          squares={this.state.history[0].squares}
           chosenValue={currentValue.chosenValue}
           onClick={(val) => this.addClass(val)} />
       </div>

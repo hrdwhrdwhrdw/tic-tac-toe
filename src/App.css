@@ -57,7 +57,7 @@ ol, ul {
 
 ul {
   list-style:none;
-  padding-top: 75px;
+  padding-top: 25px;
 }
 
 .chosen {
@@ -85,9 +85,5 @@ button {
 }
 
 .hidden {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
+  display: none;
 }
