@@ -84,6 +84,7 @@ class Game extends React.Component {
         activeValue: null
       })
     }
+    console.log(step)
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
@@ -120,7 +121,7 @@ class Game extends React.Component {
           />
         <Status
           winner={winner}
-          isNext={this.state.xIsNext}
+          xIsNext={this.state.xIsNext}
           history={this.state.history}
           jumpTo={(val) => this.jumpTo(val)}
           isSorted={this.state.isSorted}
