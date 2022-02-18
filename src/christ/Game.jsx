@@ -23,7 +23,7 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
-      isSorted: false
+      isSorted: false,
     };
   }
 
@@ -73,7 +73,7 @@ class Game extends React.Component {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+        return [squares[a], a, b, c];
       }
     }
   }
@@ -84,7 +84,6 @@ class Game extends React.Component {
         activeValue: null
       })
     }
-    console.log(step)
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
@@ -110,7 +109,8 @@ class Game extends React.Component {
 
     const historyValues = this.state.historyValues;
     const currentValue = historyValues[this.state.stepNumber];
-    const winner = this.calculateWinner(current.squares);
+    let winner = this.calculateWinner(current.squares)
+    
 
     return (
       <div className="game">
@@ -118,6 +118,7 @@ class Game extends React.Component {
             squares={current.squares}
             activeValue={this.state.activeValue}
             onClick={(i) => this.handleClick(i)}
+            winner={winner}
           />
         <Status
           winner={winner}

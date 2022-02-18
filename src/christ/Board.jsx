@@ -18,14 +18,28 @@ class Board extends React.Component {
     });
   }
 
+  setWinnerClass(arr, val) {
+    if (!arr) return;
+    for (let i = 1; i < arr.length; i++) {
+      if (val === arr[i]) {
+        return 'winner'
+      }
+    }
+  }
+
+  setChosenClass(active, val) {
+    if (active === val + 1) {
+      return 'chosen'
+    }
+  }
+
   renderSquare(i) {
     return (
       <Square
         key={i}
-        activeValue={this.props.activeValue}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        className={this.props.activeValue ===  i + 1 ? 'chosen' : ''}
+        className={`${this.setChosenClass(this.props.activeValue, i)} + ${this.setWinnerClass(this.props.winner, i)}`}
       />
     );
   }

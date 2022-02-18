@@ -87,3 +87,7 @@ button {
 .hidden {
   display: none;
 }
+
+.winner {
+  color: green
+}

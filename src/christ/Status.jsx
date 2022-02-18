@@ -31,7 +31,7 @@ export default class Status extends Component {
     render() {
         let status;
         if (this.props.winner) {
-        status = "Winner: " + this.props.winner;
+        status = "Winner: " + this.props.winner[0];
         } else if (this.props.history.length > 8 && !this.props.winner) {
         status = "Game has no winner";
         } else if (this.props.history.length - 1 < 9) {
