@@ -12,24 +12,24 @@ class Board extends React.Component {
     }
     
     return rows.map((key) => {
-      return <div className='board-row' key={key[0]}>
+      return <div className="board__row" key={key[0]}>
         {key.map(i => {return this.renderSquare(i)})}
       </div>
     });
   }
 
-  setWinnerClass(arr, val) {
-    if (!arr) return;
-    for (let i = 1; i < arr.length; i++) {
-      if (val === arr[i]) {
-        return 'winner'
+  setWinnerClass(winCombination, current) {
+    if (!winCombination) return;
+    for (let i = 1; i < winCombination.length; i++) {
+      if (current === winCombination[i]) {
+        return "winner"
       }
     }
   }
 
-  setChosenClass(active, val) {
-    if (active === val + 1) {
-      return 'chosen'
+  setChosenClass(activeValue, current) {
+    if (activeValue === current + 1) {
+      return "chosen"
     }
   }
 
@@ -46,7 +46,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div className="game-board">
+      <div className="game__board">
         {this.createSquares()}
       </div>
     );

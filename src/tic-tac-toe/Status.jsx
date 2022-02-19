@@ -30,33 +30,38 @@ export default class Status extends Component {
     }
 
     xIsWinner(history) {
-        let lastMove = history[8];
-        let getArray = lastMove.squares;
+        let lastMoves = history[8];
+        let lastSquares = lastMoves.squares;
 
-        if ((getArray[4] === 'X' && getArray[0] === 'X' && getArray[8] !== 'O') || 
-            (getArray[4] === 'X' && getArray[2] === 'X' && getArray[6] !== 'O') ||
-            (getArray[4] === 'X' && getArray[6] === 'X' && getArray[2] !== 'O') ||
-            (getArray[4] === 'X' && getArray[8] === 'X' && getArray[0] !== 'O')) {
+        if ((lastSquares[4] === "X" && lastSquares[0] === "X" && lastSquares[8] !== "O") || 
+            (lastSquares[4] === "X" && lastSquares[2] === "X" && lastSquares[6] !== "O") ||
+            (lastSquares[4] === "X" && lastSquares[6] === "X" && lastSquares[2] !== "O") ||
+            (lastSquares[4] === "X" && lastSquares[8] === "X" && lastSquares[0] !== "O")) {
             return true
         }
     }
-    render() {
-        let status;
 
+    getStatus() {
         if (this.props.winner) {
-        status = "Winner: " + this.props.winner[0];
+        return "Winner: " + this.props.winner[0];
         } else if (this.props.history.length > 8 && this.xIsWinner(this.props.history)) {
-        status = "Winner: X"
+        return "Winner: X"
         } else if (this.props.history.length > 8 && !this.props.winner) {
-        status = "Game has no winner";
+        return "Game has no winner";
         } else if (this.props.history.length - 1 < 9) {
-        status = "Next player: " + (this.props.xIsNext ? "X" : "O");
+        return "Next player: " + (this.props.xIsNext ? "X" : "O");
         }
+    }
 
+    render() {
         return (
-        <div className="game-info">
-            {status}
-            <ul className="movelist">{this.setMoveList()}</ul>
+        <div className="game__info">
+            <div className="game__status">
+                {this.getStatus()}
+            </div>
+            <ul className="game__move-list">
+                {this.setMoveList()}
+            </ul>
         </div>
         );
     }

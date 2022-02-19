@@ -13,13 +13,12 @@ export default class MoveList extends Component {
   }
 
   createMoveList() {
-    const arr = [0,1,2,3,4,5,6,7,8]
+    let arr = [0,1,2,3,4,5,6,7,8]
     if (!this.props.isSorted) {
       return arr.map(i =>  this.renderMoveList(i))
     }
 
     if (this.props.isSorted) {
-      const arr = [0,1,2,3,4,5,6,7,8];
       let result = []
       for (let i = arr.length - 1; i >= 0; i--) {
         result.push(this.renderMoveList(i))
@@ -30,7 +29,9 @@ export default class MoveList extends Component {
 
   render() {
     return <div>
-      <button onClick={() => this.props.toSort()}>Sort</button>
+      <button onClick={() => this.props.toSort()}>
+        {this.props.isSorted ? "Sort from 1 to current" : "Sort from current to 1"}
+      </button>
       <ul>
         {this.createMoveList()}
       </ul>
