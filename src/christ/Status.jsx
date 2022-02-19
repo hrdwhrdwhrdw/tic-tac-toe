@@ -28,10 +28,25 @@ export default class Status extends Component {
             return moves
         }
     }
+
+    xIsWinner(history) {
+        let lastMove = history[8];
+        let getArray = lastMove.squares;
+
+        if ((getArray[4] === 'X' && getArray[0] === 'X' && getArray[8] !== 'O') || 
+            (getArray[4] === 'X' && getArray[2] === 'X' && getArray[6] !== 'O') ||
+            (getArray[4] === 'X' && getArray[6] === 'X' && getArray[2] !== 'O') ||
+            (getArray[4] === 'X' && getArray[8] === 'X' && getArray[0] !== 'O')) {
+            return true
+        }
+    }
     render() {
         let status;
+
         if (this.props.winner) {
         status = "Winner: " + this.props.winner[0];
+        } else if (this.props.history.length > 8 && this.xIsWinner(this.props.history)) {
+        status = "Winner: X"
         } else if (this.props.history.length > 8 && !this.props.winner) {
         status = "Game has no winner";
         } else if (this.props.history.length - 1 < 9) {
@@ -41,7 +56,7 @@ export default class Status extends Component {
         return (
         <div className="game-info">
             {status}
-            <ol>{this.setMoveList()}</ol>
+            <ul className="movelist">{this.setMoveList()}</ul>
         </div>
         );
     }
