@@ -8,7 +8,7 @@ class Board extends React.Component {
     let size = field.length / rowLength;
     let rows = [];
     for (let i = 0; i < size; i++) {
-      rows[i] = field.slice(i * size, i * size + size);        // rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+      rows[i] = field.slice(i * size, i * size + size);  
     }
     
     return rows.map((key) => {
@@ -25,12 +25,14 @@ class Board extends React.Component {
         return "winner"
       }
     }
+    return ""
   }
 
   setChosenClass(activeValue, current) {
     if (activeValue === current + 1) {
       return "chosen"
     }
+    return ""
   }
 
   renderSquare(i) {
@@ -39,8 +41,8 @@ class Board extends React.Component {
         key={i}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        className={`${this.setChosenClass(this.props.activeValue, i)} + ${this.setWinnerClass(this.props.winner, i)}`}
-      />
+        className={`${this.setChosenClass(this.props.activeValue, i)}  ${this.setWinnerClass(this.props.winner, i)}`}
+        />
     );
   }
 

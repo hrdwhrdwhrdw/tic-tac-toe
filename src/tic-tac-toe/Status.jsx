@@ -8,7 +8,7 @@ export default class Status extends Component {
                 const desc = move ? "Go to move #" + move : "Go to game start";
                 return (
                     <li key={move}>
-                    <button onClick={() => this.props.jumpTo(move)}>{desc}</button>
+                    <button  onClick={() => this.props.jumpTo(move)}>{desc}</button>
                     </li>
                 );
             });
@@ -17,12 +17,12 @@ export default class Status extends Component {
         if (this.props.isSorted) {
             let moves = [];
             moves.push(<li key={0}>
-                <button onClick={() => this.props.jumpTo(0)}>Go to game start</button>
+                <button className="move__start" onClick={() => this.props.jumpTo(0)}>Go to game start</button>
                 </li>)
             for (let i = history.length - 1; i > 0; i--) {
                 const desc = i ? "Go to move #" + i : "Go to game start";
                 moves.push(<li key={i}>
-                    <button onClick={() => this.props.jumpTo(i)}>{desc}</button>
+                    <button className="move__item" onClick={() => this.props.jumpTo(i)}>{desc}</button>
                     </li>)
             }
             return moves
